@@ -1,0 +1,254 @@
+
+
+
+
+
+! Path to the perplex folder.
+perpat = '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1'
+
+! Name of the Perple_X project.
+nampro = 'bulk_TMMFequ'
+
+!!! Equilibruim (0). Metastability (1).
+met = 0
+
+!!! Thermodynamic database index.
+inddat = 6
+
+!!! Pmin(bar)   Pmax   Tmin(K)   Tmax
+premin = 1.
+premax = 3E+4
+temmin = 300.
+temmax = 2000.
+
+!!! Number of P nodes and T nodes.
+nP = 2000
+nT = 135
+
+!!! P(bar) and T(K) for the reference mineralogy.
+preref = 5000.
+temref = 700.
+
+!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
+!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+ox1 = 53.82
+ox2 = 16.32
+ox3 = 11.81
+ox4 = 07.04
+ox5 = 09.40
+ox6 = 02.96
+ox7 = 01.00
+ox8 = 00.00
+ox9 = 00.00
+ox10 = 00.00
+ox11 = 00.00
+ox12 = 00.00
+!!!#############################################################################
+
+
+
+
+! Thermodynamic Database options.
+! 0. stx08ver.dat
+! 1. stx11ver.dat _________[SiO2 Al2O3 FeO MgO CaO Na2O][best for the mantle].
+! 2. hp02ver.dat
+! 3. hp02ver_jca.dat ______[file from Afonso][OUT OF DATE].
+! 4. cr_hp02ver.dat
+! 5. cr_hp17ver.dat _______[cr_hp02ver.dat + some param from hp02ver.dat].
+! 6. hpha02ver.dat ________[best for the crust].
+! 7. hpha02ver.dat ________[best for the crust][with titan].  Modified, .
+! 8. cr_hp02_ZK1.dat ______[file from Ziberna][OUT OF DATE].
+
+
+
+
+!!!#############################################################################
+!!! Composition examples:
+
+
+! Harzburgite (Cammarano et al., 2011).
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 36.04   00.65    05.97  56.54  00.79  00.00   00.00  00.00  00.00    00.00    00.00   00.00
+
+
+! Pyrolite (Xu et al., 2008).
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 38.71   02.22    06.17  49.85  02.94  00.00   00.00  00.00  00.00    00.00    00.00   00.00
+
+
+! PUM MS (Afonso et al., 2008).
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 45.00   04.50    08.10  37.80  03.60  00.36   00.00  00.00  00.38    00.20    00.14   00.25
+
+
+! Proton sub continental lithospheric mantle. (Afonso et al., 2008).
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 44.60   01.90    07.90  42.60  01.70  00.12   00.00  00.00  00.40    00.07    00.12   00.26
+
+
+! Average tecton garnet peridotite (Afonso et al., 2008).
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 45.00   03.90    08.10  38.70  03.20  00.28   00.00  00.00  00.41    00.16    00.07   00.24
+
+
+! Composition from ziberna file.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 42.11   03.55    09.03  41.94  01.23  00.04   02.40  00.50  00.82    00.00
+
+
+! Average central Mongolia. Fullea et al., 2012.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 44.59   03.48    08.25  39.56  02.85  00.31   00.00  00.00  00.00    00.00    00.00   00.00
+
+
+! Rudnick and Gao 2014.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 66.62   15.40    15.40  02.48  03.59  03.27   02.80  00.00  00.00    00.64    00.10   00.00
+
+
+! bulk_TMMF.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 53.82   16.32    11.81  07.04  09.40  02.96   01.00  00.00  00.00    00.00    00.00   00.00
+
+
+! bulk_TM.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 57.10   15.90    09.10  05.30  07.40  03.10   01.30  00.00  00.00    00.00    00.00   00.00
+
+
+! bulk_IN.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 60.80   15.50    07.40  04.25  06.10  03.25   01.85  00.00  00.00    0.00     00.00   00.00
+
+
+! bulk_SH.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 64.50   15.10    05.70  03.20  04.80  03.40   02.40  00.00  00.00    00.00    00.00   00.00
+
+
+! bulk_SHFS.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! 68.68   14.72    04.64  02.57  03.96  03.56   03.41  00.00  00.00    00.00    00.00   00.00
+!!!=============================================================================
+
+
+!!!#############################################################################
+!!!--------------------------------------------------------------------------
+!!! Input example for the modeling of the entire mantle.
+!!! --------------------------------------------------------------------------
+!!! '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1' ! Path to the perplex folder.
+!!! har                     ! Name of the Perple_X project.
+!!! 0                       ! Equilibruim (0). Metastability (1).
+!!! 1                       ! Thermodynamic database index.
+!!! 1 140E+4 300 3000       ! Pmin(bar)   Pmax   Tmin(K)   Tmax
+!!! 2000 135                ! Number of P nodes and T nodes.
+!!! 5000 700                ! P(bar) and T(K) for the reference mineralogy.
+
+!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
+!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+!!!  36.04   00.65    05.97  56.54  00.79  00.00   00.00  00.00  00.00    00.00    00.00   00.00
+!!!#############################################################################
+
+
+!!!#############################################################################
+!!!-----------------------------------------------------------------------------
+!!! Input example for the modeling of the entire crust.
+!!!-----------------------------------------------------------------------------
+!!! '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1' ! Path to the perplex folder.
+!!! bulk_rg                 ! Name of the Perple_X project.
+!!! 0                       ! Equilibruim (0). Metastability (1).
+!!! 6                       ! Thermodynamic database index.
+!!! 1 3E+4 300 2000         ! Pmin(bar)   Pmax   Tmin(K)   Tmax
+!!! 2000 135                ! Number of P nodes and T nodes.
+!!! 5000 700                ! P(bar) and T(K) for the reference mineralogy.
+
+!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
+!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+!!!  66.62	 15.40    15.40  2.48   3.59	 3.27    2.80   00.00  00.00    00.00    00.10   00.00
+!!!#############################################################################
+
+
+!!!#############################################################################
+!!!-----------------------------------------------------------------------------
+!!! Input example for the modeling of the entire crust.
+!!!-----------------------------------------------------------------------------
+!!!#############################################################################
+
+!!! '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1' ! Path to the perplex folder.
+
+!!! Name of the Perple_X project.
+!!! bulk_TMMFequ
+
+!!! Equilibruim (0). Metastability (1).
+!!! 0
+
+!!! Thermodynamic database index.
+!!! 6
+
+!!! Pmin(bar)   Pmax   Tmin(K)   Tmax
+!!! 1 3E+4 300 2000
+
+!!! Number of P nodes and T nodes.
+!!! 2000 135
+
+!!! P(bar) and T(K) for the reference mineralogy.
+!!! 5000 700
+
+!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
+!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+!!! 53.82   16.32    11.81  07.04  09.40  02.96   01.00  00.00  00.00    00.00    00.00   00.00
+!!!#############################################################################
+
+
+
+
+!!!#############################################################################
+
+!!! '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1' ! Path to the perplex folder.
+
+!!! Name of the Perple_X project.
+!!! bulk_TMMF100equ
+
+!!! Equilibruim (0). Metastability (1).
+!!! 0
+
+!!! Thermodynamic database index.
+!!! 6
+
+!!! Pmin(bar)   Pmax   Tmin(K)   Tmax
+!!! 1 3E+4 300 2000
+
+!!! Number of P nodes and T nodes.
+!!! 2000 135
+
+!!! P(bar) and T(K) for the reference mineralogy.
+!!! 5000 700
+
+!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
+!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+!!! 53.82   16.32    11.81  07.04  09.40  02.96   01.00  01.00  00.00    00.00    00.00   00.00
+!!!#############################################################################
+
+
+
+
+
+
+!!! 1]Name        2]Counter   3]T(K)           4]P(bar)         5]V,J/bar/mol    6]H,J/mol
+!!! 7]Gruneisen_T    8]Ks,bar   9]Gs,bar         10]v0,km/s        11]vp,km/s        12]vs,km/s
+!!! 13]vp/vs          14]rho,kg/m3      15]G,J/mol
+!!! 16]cp,J/K/mol     17]alpha,1/K      18]beta,1/bar     19]S,J/K/mol      20]n,mol          21]N,g            22]Ks_T,bar/K
+!!! 23]Gs_T,bar/K     24]Ks_P           25]Gs_P           26]v0_T           27]vp_T           28]vs_T           29]v0_P
+!!! 30]vp_P           31]vs_P           32]cp/cv          33]vol,%          34]wt,%           35]mol,%          36]SIO2,wt%
+!!! 37]AL2O3,wt%      38]FEO,wt%        39]MGO,wt%        CAO,wt%        NA2O,wt%       mu_SIO2,J/mol  mu_AL2O3,J/mol
+!!! mu_FEO,J/mol   mu_MGO,J/mol   mu_CAO,J/mol   mu_NA2O,J/mol
+
+
+
+
+!!! Name        Counter   1]T(K)           2]P(bar)         3]V,J/bar/mol    4]H,J/mol        5]Gruneisen_T    6]Ks,bar         7]Gs,bar
+!!! 8]v0,km/s        9]vp,km/s        10]vs,km/s        11]vp/vs          12]rho,kg/m3      13]G,J/mol        14]cp,J/K/mol
+!!! 15]alpha,1/K      16]beta,1/bar     17]S,J/K/mol      18]n,mol          19]N,g            20]Ks_T,bar/K     21]Gs_T,bar/K
+!!! 22]Ks_P           23]Gs_P           24]v0_T           25]vp_T           26]vs_T           27]v0_P           28]vp_P           29]vs_P
+!!! 30]cp/cv          31]vol,%          32]wt,%           33]mol,%          34]SIO2,wt%       35]AL2O3,wt%      36]FEO,wt%        37]MGO,wt%
+!!! 38]CAO,wt%        NA2O,wt%       mu_SIO2,J/mol  mu_AL2O3,J/mol mu_FEO,J/mol   mu_MGO,J/mol   mu_CAO,J/mol   mu_NA2O,J/mol
