@@ -4,7 +4,7 @@
 
 
 ! Path to the perplex folder.
-perpat = '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1'
+perpat = '/home/mattiaguerri/Dropbox/perplex_676_src1'
 
 ! Name of the Perple_X project.
 nampro = 'bulk_TMMFequ'
