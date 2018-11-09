@@ -5,6 +5,8 @@
 !     - In case you are modelling metastable mineralogies, check that the phases stable
 !         at the chosen PT conditions are recognized in the subroutine 'compro'.
 
+! Compile:
+! gfortran getinp.f90 sub_compro.f90 sub_reawerout.f90 mod* -o getinp
 
 program getinp
 
@@ -41,20 +43,17 @@ include 'parameters.h'
 include 'thermodynamic_dataset.h'
 
 
-write(*,*) temmin
-
-
-	! Set path to cwd and link the perple_x executables.
-	call getcwd(cwd)
-	path1=trim(perpat)//'/build'
-	path2=trim(cwd)//'/build'
-	call symlnk(path1, path2, status=is)
-	path1=trim(perpat)//'/vertex'
-	path2=trim(cwd)//'/vertex'
-	call symlnk(path1, path2, status=is)
-	path1=trim(perpat)//'/werami'
-	path2=trim(cwd)//'/werami'
-	call symlnk(path1, path2, status=is)
+! Set path to cwd and link the perple_x executables.
+call getcwd(cwd)
+path1=trim(perpat)//'/build'
+path2=trim(cwd)//'/build'
+call symlnk(path1, path2, status=is)
+path1=trim(perpat)//'/vertex'
+path2=trim(cwd)//'/vertex'
+call symlnk(path1, path2, status=is)
+path1=trim(perpat)//'/werami'
+path2=trim(cwd)//'/werami'
+call symlnk(path1, path2, status=is)
 
 	! Clean the cd from previous perple_x output with the same name of the input one.
 	if(flag1==1)then
@@ -108,8 +107,10 @@ write(*,*) temmin
 	if (is==0) close(1,status='delete')
 	endif
 
+
 	! Write the input for build.
 	open(1,file='inpbui.txt')
+
 
 	select case (inddat)
 
@@ -129,11 +130,12 @@ write(*,*) temmin
 	path2=trim(cwd)//'/stx08_solution_model.dat'
 	call symlnk(path1, path2, status=is)
 
-	write(1,1000)nampro
-	write(1,3301)
-	write(1,3380) temmin,temmax,premin,premax
-	write(1,3300) ox1,ox2,ox3,ox4,ox5,ox6
-	write(1,3302)
+write(1,1000)nampro
+write(1,3301)
+write(1,3380) temmin, temmax, premin, premax
+print*, temmin, temmax, premin, premax
+write(1,3300) ox1,ox2,ox3,ox4,ox5,ox6
+write(1,3302)
 3301  format('stx08ver.dat',/ &
              'perplex_option.dat',/ &
              'n',/ &
@@ -149,8 +151,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-3380  format(a10,1X,a10,/ &
-             a10,1X,a10,/ &
+3380  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 3300  format(6F10.4)
 3302  format('n',/ &
@@ -212,8 +214,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-3080  format(a10,1X,a10,/ &
-             a10,1X,a10,/ &
+3080  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 3200  format(6F10.4)
 3202  format('n',/ &
@@ -279,8 +281,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11130	format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11130	format(2F15.3,/ &
+             2F15.3,/ &
              'y',/)
 11131	format(7F10.4)
 11132	format('n',/ &
@@ -345,8 +347,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11125 format(a14,1X,a14,/ &
-              a14,1X,a14,/ &
+11125 format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 11126 format(8F8.4)
 11127 format('n',/ &
@@ -439,8 +441,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1880  format(a14,1X,a14,/ &
-           a14,1X,a14,/ &
+1880  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2011  format(F7.3,7F7.3)
 1012  format('n',/ &
@@ -499,8 +501,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1887  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1887  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2511  format(F7.3,5F7.3)
 1312  format('y',/ &
@@ -578,8 +580,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-1687  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1687  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 2611  format(8F8.4)
 1612  format('n',/ &
@@ -648,8 +650,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-1884  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1884  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2411  format(9F8.4)
 1412  format('n',/ &
@@ -742,8 +744,8 @@ write(*,*) temmin
        '2',/ &
        'n',/ &
        '2',/)
-11687  format(a14,1X,a14,/ &
-              a14,1X,a14,/ &
+11687  format(2F15.3,/ &
+             2F15.3,/ &
               'y')
 12411  format(12F8.4)
 11612  format('n',/ &
@@ -813,8 +815,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11884  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11884  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 12511  format(9F8.4)
 11412  format('n',/ &
@@ -905,8 +907,8 @@ write(*,*) temmin
            '2',/ &
            'n',/ &
            '2',/)
-11114  format(a14,1X,a14,/ &
-            a14,1X,a14,/ &
+11114  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 11115  format(7F10.4)
 11116  format('n',/ &
@@ -966,7 +968,7 @@ write(*,*) temmin
 	write(1,11118)
 	write(1,11119) temmin,temmax,premin,premax
 	write(1,11121) ox1,ox2,ox3,ox4,ox5,ox6,ox7,ox8
-   	write(1,11122)
+  write(1,11122)
 11117 format(A20)
 11118 format('hpha02ver.dat',/ &
            'perplex_option.dat',/ &
@@ -987,8 +989,8 @@ write(*,*) temmin
            '2',/ &
            'n',/ &
            '2',/)
-11119  format(a14,1X,a14,/ & ! T range.
-            a14,1X,a14,/ &   ! P range.
+11119  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 11121  format(8F10.4)
 11122  format('n',/ &
@@ -1124,8 +1126,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11143 format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11143 format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 11144 format(8F10.4)
 11145 format('n',/ &
@@ -1272,8 +1274,8 @@ write(*,*) temmin
                 '2',/ &
                 'n',/ &
                 '2',/)
-11148    format(a14,1X,a14,/ & ! T range.
-                a14,1X,a14,/ &   ! P range.
+11148    format(2F15.3,/ &
+             2F15.3,/ &
                 'y')
 11149    format(8F10.4)
 11150    format('n',/ &
@@ -1378,8 +1380,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1688	format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1688	format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 2412	format(8F8.4)
 1613	format('n',/ &

@@ -1,8 +1,3 @@
-
-
-
-
-
 ! Path to the perplex folder.
 perpat = '/home/mattiaguerri/Dropbox/perplex_676_src1'
 
@@ -10,20 +5,20 @@ perpat = '/home/mattiaguerri/Dropbox/perplex_676_src1'
 nampro = 'bulk_TMMFequ'
 
 ! Equilibruim (0). Metastability (1).
-met = 0
+met = 1
 
 ! Thermodynamic database index.
-inddat = 0
+inddat = 2
 
 ! Pmin(bar)   Pmax   Tmin(K)   Tmax
 premin = 1.
-premax = 3E+4
+premax = 3e3
 temmin = 300.
-temmax = 2000.
+temmax = 1000.
 
 ! Number of P nodes and T nodes.
-nP = 2000
-nT = 135
+nP = 20
+nT = 20
 
 ! P(bar) and T(K) for the reference mineralogy.
 preref = 5000.
