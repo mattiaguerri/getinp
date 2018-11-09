@@ -9,28 +9,28 @@ perpat = '/home/mattiaguerri/Dropbox/perplex_676_src1'
 ! Name of the Perple_X project.
 nampro = 'bulk_TMMFequ'
 
-!!! Equilibruim (0). Metastability (1).
+! Equilibruim (0). Metastability (1).
 met = 0
 
-!!! Thermodynamic database index.
-inddat = 6
+! Thermodynamic database index.
+inddat = 0
 
-!!! Pmin(bar)   Pmax   Tmin(K)   Tmax
+! Pmin(bar)   Pmax   Tmin(K)   Tmax
 premin = 1.
 premax = 3E+4
 temmin = 300.
 temmax = 2000.
 
-!!! Number of P nodes and T nodes.
+! Number of P nodes and T nodes.
 nP = 2000
 nT = 135
 
-!!! P(bar) and T(K) for the reference mineralogy.
+! P(bar) and T(K) for the reference mineralogy.
 preref = 5000.
 temref = 700.
 
-!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
-!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
+! Insert composition for all the oxides (wt. %), if you do not need one just insert 00.00.
+! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
 ox1 = 53.82
 ox2 = 16.32
 ox3 = 11.81
@@ -43,10 +43,6 @@ ox9 = 00.00
 ox10 = 00.00
 ox11 = 00.00
 ox12 = 00.00
-!!!#############################################################################
-
-
-
 
 ! Thermodynamic Database options.
 ! 0. stx08ver.dat
@@ -62,8 +58,7 @@ ox12 = 00.00
 
 
 
-!!!#############################################################################
-!!! Composition examples:
+! Composition examples:
 
 
 ! Harzburgite (Cammarano et al., 2011).
