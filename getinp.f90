@@ -16,7 +16,7 @@ implicit none
 
 
 ! Parameters.
-integer, parameter:: flag1 = 1 ! Switch running Perple_X off or on.
+integer, parameter:: flag1 = 0 ! Switch running Perple_X off or on.
 integer inddat,nT,nP,nx,ny,is,co1,met
 integer numpha1,numpha2
 character(100)nam1,nam2,nam3
@@ -55,66 +55,67 @@ path1=trim(perpat)//'/werami'
 path2=trim(cwd)//'/werami'
 call symlnk(path1, path2, status=is)
 
-	! Clean the cd from previous perple_x output with the same name of the input one.
-	if(flag1==1)then
-	str1='.arf'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='.blk'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='.dat'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='.plt'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='.tof'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_VERTEX_options.txt'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_WERAMI_options.txt'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_1.tab'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_1.txt'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_1.phm'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_phases.dat'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	str1='_sys.dat'
-	file1 = trim(nampro) // trim(str1)
-	open(unit=1,iostat=is,file=file1,status='old')
-	if (is==0) close(1,status='delete')
-	endif
+	! ! Clean the cd from previous perple_x output with the same name of the input one.
+	! if(flag1==1)then
+	! str1='.arf'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='.blk'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='.dat'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='.plt'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='.tof'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_VERTEX_options.txt'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_WERAMI_options.txt'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_1.tab'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_1.txt'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_1.phm'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_phases.dat'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! str1='_sys.dat'
+	! file1 = trim(nampro) // trim(str1)
+	! open(unit=1,iostat=is,file=file1,status='old')
+	! if (is==0) close(1,status='delete')
+	! endif
 
 
-	! Write the input for build.
-	open(1,file='inpbui.txt')
+! Write the input for build.
+open(1,file='inpbui.txt')
 
 
-	select case (inddat)
+select case (inddat)
 
-	!*************************************************************************
+
+!*************************************************************************
 	! CASE 0.
 	! Thermodynamic database: stx08ver.dat
 	case(0)
@@ -1457,12 +1458,12 @@ write(1,3302)
 
 		! Write the input for werami. Second call.
 		open(4,file="inpwer2.txt")
-		write(4,1000)nampro
+		write(4,1000) nampro
 		write(4,11111)
-		write(4,11151)temref,preref
+		write(4,11151) temref, preref
 		write(4,11152)
 11111 format('1')
-11151 format(A9,A15)
+11151 format(2F15.3)
 11152 format('99 99',/ &
                 '0',/)
 		close(4)
@@ -1567,7 +1568,7 @@ write(1,3302)
 			endif
 		enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
-		call reawerout(nampro,numox,numphatxt)
+		call reawerout(nampro, numox, numphatxt)
 		do ll=1,ny
 			read(50,'(A12)',advance='no')nam1
 			read(50,*)co1,syspro(:,ll)
@@ -1576,7 +1577,10 @@ write(1,3302)
 			enddo
 			pre=syspro(2,ll)
 			tem=syspro(1,ll)
-			call compro(numphatxt,pre,tem,vpsys,vssys,densys)
+      print*, "QQQQQQQQ"
+      stop
+			! call compro(numphatxt, namphatxt, numox, molref, volref, phacomtxt, endmemrat, &
+      !             numpha_td, maxendmem_td, pre, tem, vpsys, vssys, densys)
 			syspro(12,ll) = densys
 			syspro(9,ll)  = vpsys
 			syspro(10,ll) = vssys

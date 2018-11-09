@@ -1,9 +1,9 @@
-bulk_TMMFequ        
+bulk_TMMFmet        
 2
 36
 3
 n
 
-     20     20
+      5      5
 0
 

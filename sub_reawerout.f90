@@ -30,34 +30,34 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-subroutine reawerout(nampro,numox,numphatxt)
+subroutine reawerout(nampro, numox, numphatxt)
 
 
-	use var
-	use strings
+use var
+use strings
 
 
-	implicit none
+implicit none
 
 
-	integer numhea,con1
-	integer numphatxt
-	real(8)totwei2
-	character(100)nampro,namfil
-	character(150)nam1
-	character(16)nam2
-	character(10)nam3
-	character(len=1) :: delims
-	integer, parameter :: StrMax=10, Nmax = 20
-	character(len=StrMax), dimension(Nmax) :: args
-	integer :: nargs
-	integer nrid
-	integer l
-	integer numox
+integer numhea,con1
+integer numphatxt
+real(8)totwei2
+character(100)nampro,namfil
+character(150)nam1
+character(16)nam2
+character(10)nam3
+character(len=1) :: delims
+integer, parameter :: StrMax=10, Nmax = 20
+character(len=StrMax), dimension(Nmax) :: args
+integer :: nargs
+integer nrid
+integer l
+integer numox
 
 
-	namfil=trim(nampro)//'_1.txt'
-	open(11111,file=namfil)
+namfil=trim(nampro)//'_1.txt'
+open(11111,file=namfil)
 
 
    ! Get rid of the header.
@@ -104,7 +104,7 @@ subroutine reawerout(nampro,numox,numphatxt)
 
 
 	do l=1,numphatxt
-		read(11111,*)namphatxt(l),phacomtxt(:,l)
+		read(11111,*) namphatxt(l), phacomtxt(:,l)
 	enddo
 
 

@@ -1,3 +1,8 @@
+! Compute physical properties as a function of P and T.
+! Input:
+!
+
+
 subroutine compro(numphatxt, namphatxt, numox, molref, volref, phacomtxt, endmemrat, numpha_td, &
                   maxendmem_td, pre, tem, vpsys, vssys, densys)
 
@@ -39,6 +44,7 @@ character(len=10)nam1
 include 'thermodynamic_dataset.h'
 
 
+print*, numpha_td
 ! Calculate phacomtxt(4,:) according to the change in volume percentages.
 phacomtxt(4,:) = (phacomtxt(2,:)-volref(:))/volref(:) * molref(:) + molref(:)
 
@@ -138,4 +144,3 @@ vpsys=(sqrt((kssys*1D05+4./3.*mussys*1D05)/densys))*1e-3
 vssys=(sqrt(mussys*1e05/densys))*1e-3
 
 end subroutine
-
