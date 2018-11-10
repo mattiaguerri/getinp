@@ -1,9 +1,9 @@
-bulk_TMMFequ        
+bulk_sh_000_met     
 2
 36
 3
 n
 
-    135   2000
+      5      5
 0
 

@@ -5,7 +5,6 @@
 !     - In case you are modelling metastable mineralogies, check that the phases stable
 !         at the chosen PT conditions are recognized in the subroutine 'compro'.
 
-
 program getinp
 
 use var
@@ -15,46 +14,42 @@ implicit none
 
 ! Parameters.
 integer, parameter:: flag1 = 1 ! Switch running Perple_X off or on.
-integer inddat,nT,nP,nx,ny,is,co1,met
-integer numpha1,numpha2
+integer inddat, nT, nP, nx, ny, is, co1, met
+integer numpha1, numpha2
 character(100)nam1,nam2,nam3
 character(100) nampro, head(13)
 real(8) premin,premax,temmin,temmax,preref,temref
 character(len=100), dimension(:), allocatable :: nampro_all
-character(100)cwd,perpat,path1,path2
-character(100)file1,file11,file2,file22
-character(100)str1,str2,str11,str22
+character(100) cwd,perpat,path1,path2
+character(100) file1,file11,file2,file22
+character(100) str1,str2,str11,str22
 character(len=10), dimension(:), allocatable :: nampha,nampha1,nampha2
-real(8)siowei,siofac,feofac,mgofac,sioper,feoper,mgoper,totwei1,totwei2
-real(8)pre,tem,Vpsys,Vssys,densys
+real(8) siowei,siofac,feofac,mgofac,sioper,feoper,mgoper,totwei1,totwei2
+real(8) pre, tem, vpsys, vssys, densys
 real*8, dimension(:), allocatable :: ar1,ar2
 real*8, dimension(:,:), allocatable :: syspro
-real*8, dimension(:,:), allocatable :: phapro1,phapro2
-real(8)ox1,ox2,ox3,ox4,ox5,ox6,ox7,ox8,ox9,ox10,ox11,ox12
-integer l,ll,m
-integer nox,nox1,nox2
-integer numox
-integer numphatxt
+real*8, dimension(:,:), allocatable :: phapro1, phapro2
+integer l, ll, m
+integer nox, nox1, nox2
+
 
 
 include 'parameters.h'
-include 'thermodynamic_dataset.h'
+! include 'thermodynamic_dataset.h'
 
 
-write(*,*) temmin
+! Set path to cwd and link the perple_x executables.
+call getcwd(cwd)
+path1=trim(perpat)//'/build'
+path2=trim(cwd)//'/build'
+call symlnk(path1, path2, status=is)
+path1=trim(perpat)//'/vertex'
+path2=trim(cwd)//'/vertex'
+call symlnk(path1, path2, status=is)
+path1=trim(perpat)//'/werami'
+path2=trim(cwd)//'/werami'
+call symlnk(path1, path2, status=is)
 
-
-	! Set path to cwd and link the perple_x executables.
-	call getcwd(cwd)
-	path1=trim(perpat)//'/build'
-	path2=trim(cwd)//'/build'
-	call symlnk(path1, path2, status=is)
-	path1=trim(perpat)//'/vertex'
-	path2=trim(cwd)//'/vertex'
-	call symlnk(path1, path2, status=is)
-	path1=trim(perpat)//'/werami'
-	path2=trim(cwd)//'/werami'
-	call symlnk(path1, path2, status=is)
 
 	! Clean the cd from previous perple_x output with the same name of the input one.
 	if(flag1==1)then
@@ -108,12 +103,15 @@ write(*,*) temmin
 	if (is==0) close(1,status='delete')
 	endif
 
-	! Write the input for build.
-	open(1,file='inpbui.txt')
 
-	select case (inddat)
+! Write the input for build.
+open(1,file='inpbui.txt')
 
-	!*************************************************************************
+
+select case (inddat)
+
+
+!*************************************************************************
 	! CASE 0.
 	! Thermodynamic database: stx08ver.dat
 	case(0)
@@ -129,11 +127,12 @@ write(*,*) temmin
 	path2=trim(cwd)//'/stx08_solution_model.dat'
 	call symlnk(path1, path2, status=is)
 
-	write(1,1000)nampro
-	write(1,3301)
-	write(1,3380) temmin,temmax,premin,premax
-	write(1,3300) ox1,ox2,ox3,ox4,ox5,ox6
-	write(1,3302)
+write(1,1000)nampro
+write(1,3301)
+write(1,3380) temmin, temmax, premin, premax
+print*, temmin, temmax, premin, premax
+write(1,3300) ox1,ox2,ox3,ox4,ox5,ox6
+write(1,3302)
 3301  format('stx08ver.dat',/ &
              'perplex_option.dat',/ &
              'n',/ &
@@ -149,8 +148,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-3380  format(a10,1X,a10,/ &
-             a10,1X,a10,/ &
+3380  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 3300  format(6F10.4)
 3302  format('n',/ &
@@ -212,8 +211,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-3080  format(a10,1X,a10,/ &
-             a10,1X,a10,/ &
+3080  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 3200  format(6F10.4)
 3202  format('n',/ &
@@ -279,8 +278,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11130	format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11130	format(2F15.3,/ &
+             2F15.3,/ &
              'y',/)
 11131	format(7F10.4)
 11132	format('n',/ &
@@ -345,8 +344,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11125 format(a14,1X,a14,/ &
-              a14,1X,a14,/ &
+11125 format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 11126 format(8F8.4)
 11127 format('n',/ &
@@ -439,8 +438,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1880  format(a14,1X,a14,/ &
-           a14,1X,a14,/ &
+1880  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2011  format(F7.3,7F7.3)
 1012  format('n',/ &
@@ -499,8 +498,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1887  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1887  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2511  format(F7.3,5F7.3)
 1312  format('y',/ &
@@ -578,8 +577,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-1687  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1687  format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 2611  format(8F8.4)
 1612  format('n',/ &
@@ -648,8 +647,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-1884  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1884  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 2411  format(9F8.4)
 1412  format('n',/ &
@@ -742,8 +741,8 @@ write(*,*) temmin
        '2',/ &
        'n',/ &
        '2',/)
-11687  format(a14,1X,a14,/ &
-              a14,1X,a14,/ &
+11687  format(2F15.3,/ &
+             2F15.3,/ &
               'y')
 12411  format(12F8.4)
 11612  format('n',/ &
@@ -813,8 +812,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11884  format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11884  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 12511  format(9F8.4)
 11412  format('n',/ &
@@ -905,8 +904,8 @@ write(*,*) temmin
            '2',/ &
            'n',/ &
            '2',/)
-11114  format(a14,1X,a14,/ &
-            a14,1X,a14,/ &
+11114  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 11115  format(7F10.4)
 11116  format('n',/ &
@@ -966,7 +965,7 @@ write(*,*) temmin
 	write(1,11118)
 	write(1,11119) temmin,temmax,premin,premax
 	write(1,11121) ox1,ox2,ox3,ox4,ox5,ox6,ox7,ox8
-   	write(1,11122)
+  write(1,11122)
 11117 format(A20)
 11118 format('hpha02ver.dat',/ &
            'perplex_option.dat',/ &
@@ -987,8 +986,8 @@ write(*,*) temmin
            '2',/ &
            'n',/ &
            '2',/)
-11119  format(a14,1X,a14,/ & ! T range.
-            a14,1X,a14,/ &   ! P range.
+11119  format(2F15.3,/ &
+             2F15.3,/ &
             'y')
 11121  format(8F10.4)
 11122  format('n',/ &
@@ -1124,8 +1123,8 @@ write(*,*) temmin
              '2',/ &
              'n',/ &
              '2',/)
-11143 format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+11143 format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 11144 format(8F10.4)
 11145 format('n',/ &
@@ -1272,8 +1271,8 @@ write(*,*) temmin
                 '2',/ &
                 'n',/ &
                 '2',/)
-11148    format(a14,1X,a14,/ & ! T range.
-                a14,1X,a14,/ &   ! P range.
+11148    format(2F15.3,/ &
+             2F15.3,/ &
                 'y')
 11149    format(8F10.4)
 11150    format('n',/ &
@@ -1378,8 +1377,8 @@ write(*,*) temmin
             '2',/ &
             'n',/ &
             '2',/)
-1688	format(a14,1X,a14,/ &
-             a14,1X,a14,/ &
+1688	format(2F15.3,/ &
+             2F15.3,/ &
              'y')
 2412	format(8F8.4)
 1613	format('n',/ &
@@ -1455,12 +1454,12 @@ write(*,*) temmin
 
 		! Write the input for werami. Second call.
 		open(4,file="inpwer2.txt")
-		write(4,1000)nampro
+		write(4,1000) nampro
 		write(4,11111)
-		write(4,11151)temref,preref
+		write(4,11151) temref, preref
 		write(4,11152)
 11111 format('1')
-11151 format(A9,A15)
+11151 format(2F15.3)
 11152 format('99 99',/ &
                 '0',/)
 		close(4)
@@ -1565,22 +1564,18 @@ write(*,*) temmin
 			endif
 		enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
-		call reawerout(nampro,numox,numphatxt)
+		call reawerout(nampro)
 		do ll=1,ny
 			read(50,'(A12)',advance='no')nam1
 			read(50,*)co1,syspro(:,ll)
 			do m=1,co1 ! Skip the lines with phases properties.
 				read(50,*)
 			enddo
-			pre=syspro(2,ll)
-			tem=syspro(1,ll)
-			call compro(numphatxt,pre,tem,vpsys,vssys,densys)
-			syspro(12,ll) = densys
-			syspro(9,ll)  = vpsys
-			syspro(10,ll) = vssys
-			write(51,1167)syspro(1,ll),syspro(2,ll),syspro(25,ll),syspro(26,ll),&
-							  syspro(12,ll),syspro(9,ll),syspro(10,ll)
-1167		format(1F11.3,1F17.4,2F14.10,1F10.3,2F7.3)
+			pre = syspro(2,ll)
+			tem = syspro(1,ll)
+      call compro(pre, tem, densys, vpsys, vssys)
+			write(51,1167) syspro(1,ll), syspro(2,ll), syspro(25,ll), syspro(26,ll), densys, vpsys, vssys
+1167		format(1F20.3, 1F20.4, 2F20.10, 3F20.3)
 		enddo
 		deallocate(namphatxt)
 		deallocate(phacomtxt)
@@ -1642,7 +1637,7 @@ write(*,*) temmin
 				deallocate(phapro1)
 			enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
-			call reawerout(nampro,numox,numphatxt)
+			call reawerout(nampro)
 			feofac = phacomtxt(7,m) ! feo wt%
 			mgofac = phacomtxt(8,m) ! mgo wt%
 			feoper = feowei*feofac / totwei2 * 100
