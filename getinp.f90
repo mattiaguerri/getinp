@@ -5,9 +5,6 @@
 !     - In case you are modelling metastable mineralogies, check that the phases stable
 !         at the chosen PT conditions are recognized in the subroutine 'compro'.
 
-! Compile:
-! gfortran getinp.f90 sub_compro.f90 sub_reawerout.f90 mod* -o getinp
-
 program getinp
 
 use var
@@ -16,31 +13,29 @@ implicit none
 
 
 ! Parameters.
-integer, parameter:: flag1 = 0 ! Switch running Perple_X off or on.
-integer inddat,nT,nP,nx,ny,is,co1,met
-integer numpha1,numpha2
+integer, parameter:: flag1 = 1 ! Switch running Perple_X off or on.
+integer inddat, nT, nP, nx, ny, is, co1, met
+integer numpha1, numpha2
 character(100)nam1,nam2,nam3
 character(100) nampro, head(13)
 real(8) premin,premax,temmin,temmax,preref,temref
 character(len=100), dimension(:), allocatable :: nampro_all
-character(100)cwd,perpat,path1,path2
-character(100)file1,file11,file2,file22
-character(100)str1,str2,str11,str22
+character(100) cwd,perpat,path1,path2
+character(100) file1,file11,file2,file22
+character(100) str1,str2,str11,str22
 character(len=10), dimension(:), allocatable :: nampha,nampha1,nampha2
-real(8)siowei,siofac,feofac,mgofac,sioper,feoper,mgoper,totwei1,totwei2
-real(8)pre,tem,Vpsys,Vssys,densys
+real(8) siowei,siofac,feofac,mgofac,sioper,feoper,mgoper,totwei1,totwei2
+real(8) pre, tem, vpsys, vssys, densys
 real*8, dimension(:), allocatable :: ar1,ar2
 real*8, dimension(:,:), allocatable :: syspro
-real*8, dimension(:,:), allocatable :: phapro1,phapro2
-real(8)ox1,ox2,ox3,ox4,ox5,ox6,ox7,ox8,ox9,ox10,ox11,ox12
-integer l,ll,m
-integer nox,nox1,nox2
-integer numox
-integer numphatxt
+real*8, dimension(:,:), allocatable :: phapro1, phapro2
+integer l, ll, m
+integer nox, nox1, nox2
+
 
 
 include 'parameters.h'
-include 'thermodynamic_dataset.h'
+! include 'thermodynamic_dataset.h'
 
 
 ! Set path to cwd and link the perple_x executables.
@@ -55,57 +50,58 @@ path1=trim(perpat)//'/werami'
 path2=trim(cwd)//'/werami'
 call symlnk(path1, path2, status=is)
 
-	! ! Clean the cd from previous perple_x output with the same name of the input one.
-	! if(flag1==1)then
-	! str1='.arf'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='.blk'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='.dat'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='.plt'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='.tof'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_VERTEX_options.txt'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_WERAMI_options.txt'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_1.tab'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_1.txt'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_1.phm'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_phases.dat'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! str1='_sys.dat'
-	! file1 = trim(nampro) // trim(str1)
-	! open(unit=1,iostat=is,file=file1,status='old')
-	! if (is==0) close(1,status='delete')
-	! endif
+
+	! Clean the cd from previous perple_x output with the same name of the input one.
+	if(flag1==1)then
+	str1='.arf'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='.blk'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='.dat'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='.plt'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='.tof'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_VERTEX_options.txt'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_WERAMI_options.txt'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_1.tab'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_1.txt'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_1.phm'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_phases.dat'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	str1='_sys.dat'
+	file1 = trim(nampro) // trim(str1)
+	open(unit=1,iostat=is,file=file1,status='old')
+	if (is==0) close(1,status='delete')
+	endif
 
 
 ! Write the input for build.
@@ -1568,25 +1564,18 @@ write(1,3302)
 			endif
 		enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
-		call reawerout(nampro, numox, numphatxt)
+		call reawerout(nampro)
 		do ll=1,ny
 			read(50,'(A12)',advance='no')nam1
 			read(50,*)co1,syspro(:,ll)
 			do m=1,co1 ! Skip the lines with phases properties.
 				read(50,*)
 			enddo
-			pre=syspro(2,ll)
-			tem=syspro(1,ll)
-      print*, "QQQQQQQQ"
-      stop
-			! call compro(numphatxt, namphatxt, numox, molref, volref, phacomtxt, endmemrat, &
-      !             numpha_td, maxendmem_td, pre, tem, vpsys, vssys, densys)
-			syspro(12,ll) = densys
-			syspro(9,ll)  = vpsys
-			syspro(10,ll) = vssys
-			write(51,1167)syspro(1,ll),syspro(2,ll),syspro(25,ll),syspro(26,ll),&
-							  syspro(12,ll),syspro(9,ll),syspro(10,ll)
-1167		format(1F11.3,1F17.4,2F14.10,1F10.3,2F7.3)
+			pre = syspro(2,ll)
+			tem = syspro(1,ll)
+      call compro(pre, tem, densys, vpsys, vssys)
+			write(51,1167) syspro(1,ll), syspro(2,ll), syspro(25,ll), syspro(26,ll), densys, vpsys, vssys
+1167		format(1F20.3, 1F20.4, 2F20.10, 3F20.3)
 		enddo
 		deallocate(namphatxt)
 		deallocate(phacomtxt)
@@ -1648,7 +1637,7 @@ write(1,3302)
 				deallocate(phapro1)
 			enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
-			call reawerout(nampro,numox,numphatxt)
+			call reawerout(nampro)
 			feofac = phacomtxt(7,m) ! feo wt%
 			mgofac = phacomtxt(8,m) ! mgo wt%
 			feoper = feowei*feofac / totwei2 * 100

@@ -19,6 +19,10 @@ Output *_phases.dat:
 0   Phase   Weight %    Vol. %    Mol. %    SiO2   Al2O3    FeO (wt%)    MgO (wt%)
 
 
+### Notes about code structure
+Some variables, epecially the dynamic ones, are declared in mod_var.f90.
+
+
 ### Input Examples
 
 Composition examples:

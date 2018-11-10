@@ -2,7 +2,7 @@
 perpat = '/home/mattiaguerri/Dropbox/perplex_676_src1'
 
 ! Name of the Perple_X project.
-nampro = 'bulk_TMMFmet'
+nampro = 'bulk_sh_000_met'
 
 ! Equilibruim (0). Metastability (1).
 met = 1
@@ -26,13 +26,13 @@ temref = 700.
 
 ! Insert composition for all the oxides (wt. %), if you do not need one just insert 00.00.
 ! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
-ox1 = 53.82
-ox2 = 16.32
-ox3 = 11.81
-ox4 = 07.04
-ox5 = 09.40
-ox6 = 02.96
-ox7 = 01.00
+ox1 = 64.50
+ox2 = 15.10
+ox3 = 5.70
+ox4 = 3.2
+ox5 = 4.8
+ox6 = 3.4
+ox7 = 2.4
 ox8 = 00.00
 ox9 = 00.00
 ox10 = 00.00
@@ -127,36 +127,11 @@ ox12 = 00.00
 
 
 
-!!!#############################################################################
-
-!!! '/mnt/home_geo/mguerri/Dropbox/perplex_676_src1' ! Path to the perplex folder.
-
-!!! Name of the Perple_X project.
-!!! bulk_TMMF100equ
-
-!!! Equilibruim (0). Metastability (1).
-!!! 0
-
-!!! Thermodynamic database index.
-!!! 6
-
-!!! Pmin(bar)   Pmax   Tmin(K)   Tmax
-!!! 1 3E+4 300 2000
-
-!!! Number of P nodes and T nodes.
-!!! 2000 135
-
-!!! P(bar) and T(K) for the reference mineralogy.
-!!! 5000 700
-
-!!! Insert composition for all the oxides (wt. %), if you don't need one just insert 00.00.
-!!! 1]SiO2  2]Al2O3  3]FeO  4]MgO  5]CaO  6]Na2O  7]K2O  8]H2O  9]Cr2O3  10]TiO2  11]MnO  12]NiO
-!!! 53.82   16.32    11.81  07.04  09.40  02.96   01.00  01.00  00.00    00.00    00.00   00.00
-!!!#############################################################################
 
 
 
 
+!!! Output from Perple_X
 
 
 !!! 1]Name        2]Counter   3]T(K)           4]P(bar)         5]V,J/bar/mol    6]H,J/mol
