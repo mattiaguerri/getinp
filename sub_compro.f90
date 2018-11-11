@@ -34,14 +34,6 @@ character(len=10)nam1
 include 'thermodynamic_dataset.h'
 
 
-if (.not. allocated(volref)) allocate(volref(numphatxt))
-if (.not. allocated(molref)) allocate(molref(numphatxt))
-
-
-volref = phacomtxt(2,:)
-molref = phacomtxt(4,:)
-
-
 ! Calculate phacomtxt(4,:) according to the change in volume percentages.
 phacomtxt(4,:) = (phacomtxt(2,:)-volref(:))/volref(:) * molref(:) + molref(:)
 

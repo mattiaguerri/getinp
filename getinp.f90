@@ -1565,6 +1565,10 @@ write(1,3302)
 		enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
 		call reawerout(nampro)
+		if (.not. allocated(volref)) allocate(volref(numphatxt))
+		if (.not. allocated(molref)) allocate(molref(numphatxt))
+		volref = phacomtxt(2,:)
+		molref = phacomtxt(4,:)
 		do ll=1,ny
 			read(50,'(A12)',advance='no')nam1
 			read(50,*)co1,syspro(:,ll)
@@ -1638,6 +1642,10 @@ write(1,3302)
 			enddo
 	elseif(met==1)then ! METASTABLE CONDITION =========================
 			call reawerout(nampro)
+			if (.not. allocated(volref)) allocate(volref(numphatxt))
+		  if (.not. allocated(molref)) allocate(molref(numphatxt))
+		  volref = phacomtxt(2,:)
+		  molref = phacomtxt(4,:)
 			feofac = phacomtxt(7,m) ! feo wt%
 			mgofac = phacomtxt(8,m) ! mgo wt%
 			feoper = feowei*feofac / totwei2 * 100
@@ -1654,7 +1662,7 @@ write(1,3302)
 				do m=1,numphatxt
 					write(71,4071)'0','',namphatxt(m),phacomtxt(1,m),phacomtxt(2,m),& ! 1]vol.frac. 7]wtFe 8]wtMg
 					phacomtxt(5,m),phacomtxt(6,m),phacomtxt(9,m),phacomtxt(7,m),phacomtxt(8,m)
-4071				format(1A1,1A1,1A10,3F9.5,4F15.10)
+4071				format(1A1,1A1,1A10,3F15.5,4F15.10)
 				enddo
 			enddo
 	endif
