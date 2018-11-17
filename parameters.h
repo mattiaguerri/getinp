@@ -8,7 +8,7 @@ nampro = 'bulk_sh_000_met'
 met = 1
 
 ! Thermodynamic database index.
-inddat = 2
+inddat = 6
 
 ! Pmin(bar)   Pmax   Tmin(K)   Tmax
 premin = 1e3
