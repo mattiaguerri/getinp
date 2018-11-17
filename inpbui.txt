@@ -1,6 +1,6 @@
 bulk_sh_000_met     
-hp02ver.dat
-
+hpha02ver.dat
+perplex_option.dat
 n
 n
 n
@@ -20,39 +20,55 @@ n
         300.000        800.000
        1000.000       7000.000
 y
-
-   64.5000   15.1000    5.7000    3.2000    4.8000    3.4000    0.0000
+   64.5000   15.1000    5.7000    3.2000    4.8000    3.4000    2.4000
 n
 y
 n
 ne
-ab
 abL
+ky
+and
+sil8L
 qL
 q8L
 qGL
 coGL
+fa
+faL
+fa8L
+faGL
+fo
 foL
 fo8L
 foGL
+alm
+ab
+mic
+gr
+jd
+mgts
 woGL
 nasGL
 kalGL
-crGL
 diL
 spr4
-jd
-mgts
-opx
+cor
+kals
+py
+kspL
+crst
+k2o
+na2o
 
 y
 solution_model.dat
 Cpx(HP)
-melt(HP)
 O(HP)
 Sp(HP)
+Pl(JH)
 Gt(HP)
 Opx(HP)
+Omph(HP)
 feldspar
 
 pro
